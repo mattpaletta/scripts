@@ -5,7 +5,7 @@ NAME=""
 EMAIL=""
 
 skip_ruby_from_ppa=TRUE
-install_curl_from_source=TRUE
+install_curl_from_source=FALSE
 
 # swift
 SWIFT_VERSION=4.0.3
@@ -20,9 +20,10 @@ git config --global user.email $EMAIL
 git config --global user.name $NAME
 
 # local
-locale-gen en_US.UTF-8 && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales && echo 'export LANG=en_US.UTF-8' >> $HOME/.profile && echo 'export LANGUAGE=en_US:en' >> $HOME/.profile && echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.profile
+# TODO:// Finish configuring locales
+#locale-gen en_US.UTF-8 && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales && echo 'export LANG=en_US.UTF-8' >> $HOME/.profile && echo 'export LANGUAGE=en_US:en' >> $HOME/.profile && echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.profile
 
-wget https://swift.org/builds/ubuntu1510/swift-$(SWIFT_VERSION)-SNAPSHOT-2015-12-10-a/swift-$(SWIFT_VERSION)-SNAPSHOT-2015-12-10-a-ubuntu$(UBUNTU_VERSION).tar.gz
+wget https://swift.org/builds/ubuntu1510/swift-$SWIFT_VERSION-SNAPSHOT-2015-12-10-a/swift-$SWIFT_VERSION-SNAPSHOT-2015-12-10-a-ubuntu$UBUNTU_VERSION.tar.gz
 
 # known hosts
 mkdir -p $HOME/.ssh && touch $HOME/.ssh/known_hosts && ssh-keyscan github.com 2> /dev/null >> $HOME/.ssh/known_hosts
@@ -36,7 +37,7 @@ apt-get update && apt-get install -y clang-3.9 && update-alternatives --install 
     mkdir $HOME/.curl && \
     wget -q https://curl.haxx.se/download/curl-7.50.3.tar.gz -O $HOME/curl.tar.gz && \
     tar xzf $HOME/curl.tar.gz --directory $HOME/.curl --strip-components=1 && \
-    cd $HOME/.curl && ./configure --with-ssl && make && make install && cd - ) && \
+    cd $HOME/.curl && ./configure --with-ssl && make && make install && cd - && \
     ldconfig
 
 # ruby and jazzy for docs generation
