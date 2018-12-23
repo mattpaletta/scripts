@@ -4,7 +4,11 @@ set -e
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Cask install
-brew install cask watch watchman python3 cmake
+brew install cask watch watchman python3 cmake # mas
+
+# App Store
+# mas lucky Xcode
+# mas lucky Final\ Cut\ Pro\ X
 
 # Install docker?
 # brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
