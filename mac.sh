@@ -9,7 +9,8 @@ brew install cask watch watchman python3 cmake # mas
 # Setup VIM
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 curl https://raw.githubusercontent.com/mattpaletta/scripts/master/vimrc -o ~/.vimrc
-
+source ~/.vimrc
+vim +PluginInstall +qall
 
 # App Store
 # mas lucky Xcode
