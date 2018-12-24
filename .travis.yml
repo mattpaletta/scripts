@@ -1,0 +1,20 @@
+sudo: required
+
+os:
+  - linux
+  - osx
+
+addons:
+  homebrew:
+    update: true
+
+install: true
+
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mac.sh | sh ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl https://raw.githubusercontent.com/mattpaletta/scripts/master/ubuntu.sh | sudo sh ; fi
+
+notifications:
+  email:
+    on_failure: change
+    on_success: never
