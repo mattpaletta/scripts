@@ -18,6 +18,7 @@ curl https://raw.githubusercontent.com/mattpaletta/scripts/master/docker.sh | sh
 # Jetbrains
 curl https://raw.githubusercontent.com/mattpaletta/scripts/master/jetbrains.sh | sh
 
-
 # Python 3
 curl https://raw.githubusercontent.com/mattpaletta/scripts/master/python.sh | sh
+
+sudo gem install cocoapods

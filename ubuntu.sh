@@ -30,7 +30,7 @@ apt-get update && sudo apt-get install -y vim git python3-pip cmake wget git bui
 wget https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu$(echo $UBUNTU_VERSION | sed 's/\.//g')/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR-ubuntu$UBUNTU_VERSION.tar.gz 
 
 # Swift dependencies
-sudo apt-get -y install clang libicu-dev libpython2.7 libcurl4
+sudo apt-get -y install clang libicu-dev libpython2.7 libcurl
 
 wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
 
