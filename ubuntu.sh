@@ -27,7 +27,7 @@ apt-get update && sudo apt-get install -y vim git python3-pip cmake wget git bui
 #locale-gen en_US.UTF-8 && locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales && echo 'export LANG=en_US.UTF-8' >> $HOME/.profile && echo 'export LANGUAGE=en_US:en' >> $HOME/.profile && echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.profile
 
 # TODO:// Replace 18.04 with sed replace ubuntu version
-wget https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1804/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR-ubuntu$UBUNTU_VERSION.tar.gz 
+wget https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu$(echo $UBUNTU_VERSION | sed 's/\.//g')/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR/swift-$SWIFT_VERSION-$SWIFT_FLAVOUR-ubuntu$UBUNTU_VERSION.tar.gz 
 
 # Swift dependencies
 sudo apt-get -y install clang libicu-dev libpython2.7 libcurl4
