@@ -8,5 +8,5 @@ curl https://raw.githubusercontent.com/mattpaletta/scripts/master/ubuntu.sh | su
 
 ## Mac OS
 ```
-curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mac.sh | sudo sh
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mac.sh | sh
 ```

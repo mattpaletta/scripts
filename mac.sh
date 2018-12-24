@@ -4,29 +4,20 @@ set -e
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Cask install
-brew install cask watch watchman python3 cmake # mas
+brew install cask watch watchman cmake
 
-# Setup VIM
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-curl https://raw.githubusercontent.com/mattpaletta/scripts/master/vimrc -o ~/.vimrc
-source ~/.vimrc
-vim +PluginInstall +qall
+# Setup Vim
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/vimconfig.sh | sh
 
-# App Store
-# mas lucky Xcode
-# mas lucky Final\ Cut\ Pro\ X
+# Configure Mas
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mas.sh | sh
 
-# Install docker?
-# brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
-# sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-# sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-# docker-machine create default --driver xhyve --xhyve-experimental-nfs-share
+# Configure Docker
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/docker.sh | sh
 
 # Jetbrains
-# brew cask install intellij-idea-ce pycharm-idea-ce
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/jetbrains.sh | sh
 
-# Pip3 install
-python3 get-pip.py
 
-# Get pip dependencies
-pip3 install virtualenv
+# Python 3
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/python.sh | sh
