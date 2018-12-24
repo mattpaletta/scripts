@@ -4,7 +4,10 @@ set -e
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Cask install
-brew install --upgrade cask watch watchman cmake
+brew install --upgrade cask
+brew install --upgrade watch 
+brew install --upgrade watchman 
+brew install --upgrade cmake
 
 # Setup Vim
 curl https://raw.githubusercontent.com/mattpaletta/scripts/master/vimconfig.sh | sh
