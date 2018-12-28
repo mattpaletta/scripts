@@ -13,7 +13,7 @@ install_curl_from_source=FALSE
 SWIFT_VERSION=4.2.1
 SWIFT_FLAVOUR=RELEASE
 UBUNTU_VERSION=$(lsb_release -r | awk '{print $2}')
-echo $UBUNTU_VERSION
+echo "Ubuntu Version: $UBUNTU_VERSION"
 
 # basic dependencies
 apt-get update && sudo apt-get install -y vim git python3-pip cmake wget git build-essential
