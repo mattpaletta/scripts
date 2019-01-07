@@ -1,5 +1,5 @@
 #!/bin/bash
-./constants.sh
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/constants.sh | sh
 
 if [[ is_mac ]]; then
     # Do something under Mac OS X platform
