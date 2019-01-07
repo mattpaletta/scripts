@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+./constants.sh
 
 if [[ is_linux ]]; then
     sudo apt-get update && sudo apt-get install -y vim

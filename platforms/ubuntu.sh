@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-../constants.sh
+./constants.sh
 
 sudo apt-get update -y && sudo apt-get install -y git
 

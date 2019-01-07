@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-../constants.sh
+./constants.sh
+
 if [[ is_mac ]]; then
 	# install docker?
 	brew install docker docker-compose docker-machine

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-../constants.sh
+./constants.sh
 
 # This needs to run first!
 run_tool brew

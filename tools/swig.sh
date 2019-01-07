@@ -1,5 +1,5 @@
 #!/bin/bash
-../constants.sh
+./constants.sh
 
 if [[ is_mac ]]; then
     # Do something under Mac OS X platform        

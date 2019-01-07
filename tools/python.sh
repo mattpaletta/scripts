@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-../constants.sh
+./constants.sh
 
 if [[ is_mac ]]; then
     brew install python3
