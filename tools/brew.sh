@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 ../constants.sh
 
 if [[ is_mac ]]; then

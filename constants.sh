@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # Utility Functions
 
 is_mac() {
