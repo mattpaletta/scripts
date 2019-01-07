@@ -6,13 +6,12 @@ os:
 
 addons:
   homebrew:
-    update: true
+    update: false
 
 install: true
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mac.sh | sh ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl https://raw.githubusercontent.com/mattpaletta/scripts/master/ubuntu.sh | sudo sh ; fi
+  - curl https://raw.githubusercontent.com/mattpaletta/scripts/master/install.sh | sudo sh
 
 notifications:
   email:

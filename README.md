@@ -1,12 +1,9 @@
 # scripts
 Common scripts for new machines
 
-## Ubuntu
-```
-curl https://raw.githubusercontent.com/mattpaletta/scripts/master/ubuntu.sh | sudo sh
-```
+[![Build Status](https://travis-ci.com/mattpaletta/scripts.svg?branch=master)](https://travis-ci.com/mattpaletta/scripts)
 
-## Mac OS
+#Usage
 ```
-curl https://raw.githubusercontent.com/mattpaletta/scripts/master/mac.sh | sh
+curl https://raw.githubusercontent.com/mattpaletta/scripts/master/install.sh | sh
 ```

@@ -1,12 +1,10 @@
+#!/usr/bin/env bash
 set -e
-
-if [ "$(uname)" == "Darwin" ]; then
+../constants.sh
+if [[ is_mac ]]; then
 	# install docker?
-	brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
-	sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-	sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-	docker-machine create default --driver xhyve --xhyve-experimental-nfs-share
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	brew install docker docker-compose docker-machine
+elif [[ is_linux ]]; then
 	echo "Updating Docker Repositories"
 	sudo apt-get update
 	sudo apt-get install \
