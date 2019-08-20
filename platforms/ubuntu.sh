@@ -31,7 +31,7 @@ run_tools() {
     done
 }
 
-sudo apt-get update -y && sudo apt-get install -y git
+sudo apt-get update -y && sudo apt-get install -y git cmake catch libboost-all-dev
 
-declare -a TOOLS=("swift" "python" "vim" "jetbrains" "docker" "swig")
+declare -a TOOLS=("swift" "python" "vim" "docker" "swig")
 run_tools TOOLS

@@ -32,7 +32,7 @@ run_tools() {
 }
 
 if [[ is_linux ]]; then
-    sudo apt-get update && sudo apt-get install -y vim
+    sudo apt-get update && sudo apt-get install -y vim build-essential cmake python3-dev
 fi
 
 # Setup VIM
@@ -40,3 +40,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 curl https://raw.githubusercontent.com/mattpaletta/scripts/master/tools/vimrc -o ~/.vimrc
 source ~/.vimrc
 vim +PluginInstall +qall
+
+# Install YouComplteMe
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --clang-completer

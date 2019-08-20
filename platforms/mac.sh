@@ -35,10 +35,7 @@ run_tools() {
 run_tool brew
 
 # Cask install
-brew install --upgrade cask
-brew install --upgrade watch 
-brew install --upgrade watchman 
-brew install --upgrade cmake
+brew install --upgrade cask watch watchman cmake boost catch2 npm yarn
 
 declare -a TOOLS=("python" "vim" "jetbrains" "docker" "swig" "mas")
 run_tools TOOLS
