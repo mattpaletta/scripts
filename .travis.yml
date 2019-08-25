@@ -10,8 +10,11 @@ addons:
 
 install: true
 
+before_install:
+  - curl https://raw.githubusercontent.com/mattpaletta/scripts/master/build.sh | sh
+
 script:
-  - curl https://raw.githubusercontent.com/mattpaletta/scripts/master/install.sh | sudo sh
+  - sh install.sh
 
 notifications:
   email:
