@@ -8,9 +8,9 @@ touch $INSTALL_FILE
 echo "-- Created install file"
 
 echo "-- Finding all tools/library install files"
-tools=($(ls -d tools/*.sh))
-libraries=($(ls -d cpp/*.sh))
-platforms=($(ls -d platforms/*.sh))
+set -a tools `ls -d tools/*.sh`
+set -a libraries `ls -d cpp/*.sh`
+set -a platforms `ls -d platforms/*.sh`
 
 echo "-- Finding constants file"
 CONSTANTS_FILE=./constants.sh
