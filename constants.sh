@@ -9,7 +9,7 @@ is_linux() {
     return "$(expr substr $(uname -s) 1 5)" == "Linux"
 }
 
-BASE_URL="https://raw.githubusercontent.com/mattpaletta/scripts/master/"
+BASE_URL="https://raw.githubusercontent.com/mattpaletta/scripts/master"
 
 exec_script() {
     curl $1 | sh

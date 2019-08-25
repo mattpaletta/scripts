@@ -7,6 +7,11 @@
 :set autoindent
 :set smartindent
 :set cindent
+" turn hybrid line numbers on
+:set number relativenumber
+:set nu rnu
+
+:let mapleader = " "
 
 " CTRL-C to copy (visual mode)
 vmap <C-c> y
@@ -35,9 +40,37 @@ call vundle#begin()
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
+" Sort lines within VIM
+Bundle 'christoomey/vim-sort-motion'
+" Title Case text
+Bundle 'christoomey/vim-titlecase'
+
+" Lookup links from google
+Bundle 'mattn/webapi-vim'
+Bundle 'christoomey/vim-quicklink'
+
+" automatically open quickfix window when AsyncRun command is executed
+Plugin 'skywind3000/asyncrun.vim'
 
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+let g:titlecase_map_keys = 0
+nmap <leader>gt <Plug>Titlecase
+vmap <leader>gt <Plug>Titlecase
+nmap <leader>gT <Plug>TitlecaseLine
+
+
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 6
+
+" ring the bell to notify you job finished
+let g:asyncrun_bell = 1
+
+" F10 to toggle quickfix window
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
+" Run cmake asynchronously in a build folder, and save all files before running
+autocmd FileType cpp,cu nnoremap :cmake :AsyncRun -strip -cwd=<root> -save=2 mkdir -p build && cd build && cmake .. && cmake --build .<cr>

@@ -1,46 +1,28 @@
-#!/bin/bash
-set -e
+_vim_installed=false
 
-is_mac() {
-    return "$(uname)" == "Darwin"
-}
-
-is_linux() {
-    return "$(expr substr $(uname -s) 1 5)" == "Linux"
-}
-
-BASE_URL="https://raw.githubusercontent.com/mattpaletta/scripts/master/"
-
-exec_script() {
-    curl $1 | sh
-}
-
-run_platform() {
-    exec_script ${BASE_URL}/platform/$1.sh
-}
-
-run_tool() {
-    exec_script ${BASE_URL}/tools/$1.sh
-}
-
-run_tools() {
-    for script in $1
-    do
-        echo "Installing ${script}"
-        run_tool ${script}
-    done
-}
-
-if [[ is_linux ]]; then
-    sudo apt-get update && sudo apt-get install -y vim build-essential cmake python3-dev
+which -s vim
+if [[ $? == 0 ]]; then
+  _vim_installed=true
+  echo "Found VIM"
+else
+  echo "Vim Not Found"
 fi
 
-# Setup VIM
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-curl https://raw.githubusercontent.com/mattpaletta/scripts/master/tools/vimrc -o ~/.vimrc
-source ~/.vimrc
-vim +PluginInstall +qall
+function install_vim() {
+  $python
+  if [[ "$_vim_installed" == false ]]; then
+    sudo apt-get install -y vim
+    _vim_installed=true
+  fi
 
-# Install YouComplteMe
-cd ~/.vim/bundle/YouCompleteMe
-python3 install.py --clang-completer
+  # Setup VIM
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  curl $BASE_URL/tools/vimrc -o ~/.vimrc
+  source ~/.vimrc
+  vim +PluginInstall +qall
+
+  # Install YouComplteMe
+  cd ~/.vim/bundle/YouCompleteMe
+  python3 install.py --clang-completer
+}
+vim=install_vim

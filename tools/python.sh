@@ -1,50 +1,56 @@
-#!/bin/bash
-set -e
+_python_installed=false
+_pip_installed=false
+_pip_deps_updated=false
 
-is_mac() {
-    return "$(uname)" == "Darwin"
-}
-
-is_linux() {
-    return "$(expr substr $(uname -s) 1 5)" == "Linux"
-}
-
-BASE_URL="https://raw.githubusercontent.com/mattpaletta/scripts/master/"
-
-exec_script() {
-    curl $1 | sh
-}
-
-run_platform() {
-    exec_script ${BASE_URL}/platform/$1.sh
-}
-
-run_tool() {
-    exec_script ${BASE_URL}/tools/$1.sh
-}
-
-run_tools() {
-    for script in $1
-    do
-        echo "Installing ${script}"
-        run_tool ${script}
-    done
-}
-
-if [[ is_mac ]]; then
-    brew install python3
-elif [[ is_linux ]]; then
-    sudo apt-get install python3-pip
+which -s python3
+if [[ $? == 0 ]]; then
+  _python_installed=true
+  echo "Found Python3"
+else
+  echo "Python3 Not Found"
 fi
 
-# Pip3 install
-python3 get-pip.py
+which -s pip3
+if [[ $? == 0 ]]; then
+  _pip_installed=true
+  echo "Found pip3"
+else
+  echo "Pip3 Not Found"
+fi
 
-# Get pip dependencies
-pip3 install virtualenv
+function install_python() {
+  if [[ is_mac ]]; then
+      $brew
+      if [[ "$_python_installed" == false ]]; then
+        brew install python3
+        _python_installed=true
+      else
+        brew update python3
+      fi
+  elif [[ is_linux ]]; then
+    if [[ "$_python_installed" == false ]]; then
+      sudo apt-get install python3-pip
+      _python_installed=true
+    fi
+  fi
 
-# Data Science
-pip3 install pandas numpy tensorflow scikit-learn pyspark
+  if [[ "$_pip_installed" == false ]]; then
+    # Pip3 install
+    python3 get-pip.py
+    _pip_installed=true
+  fi
 
-# Ops
-pip3 install docker
+  if [[ "$_pip_deps_updated" == false ]]; then
+    # Get pip dependencies
+    pip3 install --update pip virtualenv
+
+    $java
+
+    # Data Science
+    pip3 install --update pandas numpy tensorflow scikit-learn pyspark
+
+    # Ops
+    pip3 install --update docker
+  fi
+}
+python=install_python
