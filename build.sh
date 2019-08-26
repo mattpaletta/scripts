@@ -8,13 +8,15 @@ touch $INSTALL_FILE
 echo "-- Created install file"
 
 echo "-- Finding all tools/library install files"
-set -a tools `ls -d tools/*.sh`
-set -a libraries `ls -d cpp/*.sh`
-set -a platforms `ls -d platforms/*.sh`
+tools="tools/*.sh"
+libraries="cpp/*.sh"
+platforms="platforms/*.sh"
+#echo "$tools"
 
 echo "-- Finding constants file"
 CONSTANTS_FILE=./constants.sh
-if [ -f "$CONSTANTS_FILE" ]; then
+if [[ -f "$CONSTANTS_FILE" ]]
+then
 	echo "Constants file found"
 else
 	echo "Constants file NOT FOUND"
@@ -23,8 +25,9 @@ fi
 
 echo "-- Creating install files for tools"
 cat $CONSTANTS_FILE >> $INSTALL_FILE
-for tool in "${tools[@]}"; do
-#  echo "$tool"
+for tool in $tools
+do
+  echo "Found tool: $tool"
   echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
   echo "# Source from: $tool" >> $INSTALL_FILE
 	cat "$tool" >> $INSTALL_FILE
@@ -32,8 +35,9 @@ for tool in "${tools[@]}"; do
 done
 
 echo "-- Creating install files for libraries"
-for lib in "${libraries[@]}"; do
-#  echo "$lib"
+for lib in $libraries
+do
+  echo "Found library: $lib"
   echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
   echo "# Source from: $lib" >> $INSTALL_FILE
 	cat "$lib" >> $INSTALL_FILE
@@ -41,9 +45,10 @@ for lib in "${libraries[@]}"; do
 done
 
 echo "-- Creating install files for platforms"
-for plat in "${platforms[@]}"; do
+for plat in $platforms
+do
   if [[ "$plat" != "platforms/init.sh" ]]; then
-#    echo "$plat"
+    echo "Found platform: $plat"
     echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
     echo "# Source from: $plat" >> $INSTALL_FILE
     cat "$plat" >> $INSTALL_FILE
@@ -53,9 +58,9 @@ done
 
 echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
 echo "# Source from: platforms/init.sh" >> $INSTALL_FILE
-cat "platforms/init.sh" >> $INSTALL_FILE
+cat platforms/init.sh >> $INSTALL_FILE
 
-which -s hostname
+which -a hostname
 if [[ $? == 0 && `hostname` == "STEVEN.local" ]] ; then
   echo "-- Copying vimrc file"
   cp ~/.vimrc ./tools/vimrc
