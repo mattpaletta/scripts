@@ -11,7 +11,7 @@ addons:
 install: true
 
 before_install:
-  - curl https://raw.githubusercontent.com/mattpaletta/scripts/master/build.sh | sh
+  - bash build.sh
 
 script:
   - bash install.sh -a
