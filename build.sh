@@ -1,5 +1,6 @@
 # Cat all the tools/script files together
 # Append a build script, write it into install.sh
+set -e
 
 echo "-- Creating output file"
 INSTALL_FILE="./install.sh"
@@ -12,6 +13,11 @@ tools="tools/*.sh"
 libraries="cpp/*.sh"
 platforms="platforms/*.sh"
 #echo "$tools"
+
+
+function insert_new_lines() {
+  echo "$(printf "\n\n")" >> $INSTALL_FILE
+}
 
 echo "-- Finding constants file"
 CONSTANTS_FILE=./constants.sh
@@ -31,7 +37,7 @@ do
   echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
   echo "# Source from: $tool" >> $INSTALL_FILE
 	cat "$tool" >> $INSTALL_FILE
-	echo "\n\n" >> $INSTALL_FILE
+	insert_new_lines
 done
 
 echo "-- Creating install files for libraries"
@@ -41,7 +47,7 @@ do
   echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
   echo "# Source from: $lib" >> $INSTALL_FILE
 	cat "$lib" >> $INSTALL_FILE
-	echo "\n\n" >> $INSTALL_FILE
+	insert_new_lines
 done
 
 echo "-- Creating install files for platforms"
@@ -52,7 +58,7 @@ do
     echo "# *** DO NOT CHANGE HERE ***" >> $INSTALL_FILE
     echo "# Source from: $plat" >> $INSTALL_FILE
     cat "$plat" >> $INSTALL_FILE
-    echo "\n\n" >> $INSTALL_FILE
+    insert_new_lines
   fi
 done
 

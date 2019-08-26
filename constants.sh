@@ -1,13 +1,38 @@
-#!/bin/bash
-# Utility Functions
+#!/bin/env bash
 
-is_mac() {
-    return "$(uname)" == "Darwin"
+function test_mac() {
+    echo "Checking if mac"
+    return 1
+    #return "$(uname)" == "Darwin"
 }
 
-is_linux() {
-    return "$(expr substr $(uname -s) 1 5)" == "Linux"
+function test_linux() {
+    echo "Checking if linux"
+    command -v apt
+    if [[ $? == 0 ]]
+    then
+      linux_ver="$(cat /etc/os-release | grep "ID=[a-z]")"
+      echo $linux_ver
+      if [[ "$linux_ver" == "ID=ubuntu" ]]
+      then
+        echo "Found Ubuntu"
+        return 0
+      else
+        echo "Did not find Ubuntu"
+        return 1
+      fi
+    else
+      echo "Apt not installed"
+      # apt not installed, so can't be linux
+      return 1
+    fi
 }
+
+test_linux
+is_linux=$?
+
+test_mac
+is_mac=$?
 
 BASE_URL="https://raw.githubusercontent.com/mattpaletta/scripts/master"
 

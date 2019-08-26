@@ -1,5 +1,5 @@
 _java_installed=false
-which -s java
+command -v java
 if [[ $? == 0 ]]; then
   _java_has_installed=true
   echo "Found Java"
@@ -8,18 +8,18 @@ else
   echo "Did not find Java"
 fi
 
-function install_brew() {
+function install_java() {
 	if [[ "$_java_has_installed" == false ]]; then
-		if [[ is_mac ]]; then
+		if [[ $is_mac == 0 ]]; then
 			$brew
 			brew install java
-		elif [[ is_linux ]]; then
-      apt-get install -y default-jdk
+		elif [[ $is_linux == 0 ]]; then
+      apt-get -qq install -y default-jdk
 		else
 			echo "Unknown Platform"
 			exit 1
 		fi
-		$_java_has_installed=true
+		_java_has_installed=true
 	else
 		echo "Already installed Java"
 	fi

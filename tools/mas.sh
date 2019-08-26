@@ -1,5 +1,5 @@
 function install_mas() {
-  if [[ is_mac ]]; then
+  if [[ $is_mac == 0 ]]; then
     $brew
     brew install mas
 

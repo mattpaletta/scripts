@@ -1,5 +1,5 @@
 _cpp_has_installed=false
-which -s gcc
+command -v gcc
 if [[ $? == 0 ]]; then
   _cpp_has_installed=true
   echo "Found cpp"
@@ -13,15 +13,15 @@ function install_cpp() {
 		echo "-- Installing c++"
 		echo "DOING NOTHING YET"
 
-		if [[ is_mac ]]; then
+		if [[ $is_mac == 0 ]]; then
 			echo "DOING NOTHING YET"
-		elif [[ is_linux ]]; then
+		elif [[ $is_linux == 0 ]]; then
 			echo "DOING NOTHING YET"
 		else
 			echo "Unknown Platform"
 			exit 1
 		fi
-		$_cpp_has_installed=true
+		_cpp_has_installed=true
 	else
 		echo "Already installed cpp"
 	fi

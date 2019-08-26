@@ -1,5 +1,5 @@
 _brew_has_installed=false
-which -s brew
+command -v brew
 if [[ $? == 0 ]]; then
   _brew_has_installed=true
   echo "Found Brew"
@@ -9,7 +9,7 @@ else
 fi
 
 function install_mac_brew() {
-	which -s brew
+	command -v brew
 	if [[ $? != 0 ]] ; then
 		# Install Homebrew
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -25,9 +25,9 @@ function install_mac_brew() {
 function install_brew() {
 	if [[ "$_brew_has_installed" == false ]]; then
 		echo "-- Installing Brew --"
-		if [[ is_mac ]]; then
+		if [[ $is_mac == 0 ]]; then
 			call install_mac_brew
-		elif [[ is_linux ]]; then
+		elif [[ $is_linux == 0 ]]; then
 			# Do something under GNU/Linux platform
 			# TODO Add brew for linux
 			echo "Nothing to do"
@@ -35,7 +35,7 @@ function install_brew() {
 			echo "Unknown Platform"
 			exit 1
 		fi
-		$_brew_has_installed=true
+		_brew_has_installed=true
 	else
 		echo "Already installed Brew"
 	fi

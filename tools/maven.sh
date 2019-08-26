@@ -1,5 +1,5 @@
 _maven_installed=false
-which -s mvn
+command -v mvn
 if [[ $? == 0 ]]; then
   _maven_has_installed=true
   echo "Found Maven"
@@ -12,10 +12,10 @@ function install_maven() {
 	if [[ "$_java_has_installed" == false ]]; then
     $brew
 	  $java
-		if [[ is_mac ]]; then
+		if [[ $is_mac == 0 ]]; then
 			brew install maven
-		elif [[ is_linux ]]; then
-      apt-get install -y maven
+		elif [[ $is_linux == 0 ]]; then
+      apt-get -qq install -y maven
 		else
 			echo "Unknown Platform"
 			exit 1

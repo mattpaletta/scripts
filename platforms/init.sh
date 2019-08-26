@@ -1,8 +1,19 @@
 echo "-- Initialiazing platform"
-if [[ is_mac ]]; then
+
+echo "Linux: $is_linux"
+
+echo "Determining Platform"
+if [[ $is_mac == 0 ]]
+then
+  echo "Calling mac"
   $mac
-elif [[ is_linux ]]; then
+elif [[ $is_linux == 0 ]]
+then
+  echo "Calling Ubuntu"
   $ubuntu
+else
+  echo "Unsupported platform"
+  exit 1
 fi
 
 echo "-- Running Main"
@@ -55,14 +66,14 @@ then
   $brew
   $cmake
   $cpp
-  $docker
+  #$docker
   $java
-  $jetbrains
+  #$jetbrains
   $mas
   $maven
   $python
   $swift
-  $swig
+  #$swig
   $vim
 elif [[ "$_found_file" == true ]]
 then
