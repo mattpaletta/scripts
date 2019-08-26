@@ -2,8 +2,15 @@
 
 function test_mac() {
     echo "Checking if mac"
+    command -v uname
+    if [[ $? == 0 ]]
+    then
+      if [[ "$(uname)" == "Darwin" ]]
+      then
+        return 0
+      fi
+    fi
     return 1
-    #return "$(uname)" == "Darwin"
 }
 
 function test_linux() {
