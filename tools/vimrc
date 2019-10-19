@@ -1,5 +1,4 @@
-set encoding=utf-8
-
+:set encoding=utf-8
 :set bs=2
 :set tabstop=4
 :set shiftwidth=4
@@ -12,6 +11,9 @@ set encoding=utf-8
 " turn hybrid line numbers on
 :set number relativenumber
 :set nu rnu
+
+" for js files
+autocmd BufRead,BufNewFile *.js,*.jsx,*.ts,*.tsx set shiftwidth=2 tabstop=2 expandtab
 
 :let mapleader = " "
 
@@ -54,10 +56,32 @@ Bundle 'christoomey/vim-quicklink'
 " automatically open quickfix window when AsyncRun command is executed
 Plugin 'skywind3000/asyncrun.vim'
 
+" FZF integration
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+
+" Ale, linting
+Plugin 'dense-analysis/ale'
+
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Ale settings
+" fix files on save
+let g:ale_fix_on_save = 1
+
+" lint after 1000ms after changes are made both on insert mode and normal mode
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_delay = 1000
+
+" use nice symbols for errors and warnings
+let g:ale_sign_error = '✗\ '
+let g:ale_sign_warning = '⚠\ '
+
+" fixer configurations
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'], }
 
 let g:titlecase_map_keys = 0
 nmap <leader>gt <Plug>Titlecase

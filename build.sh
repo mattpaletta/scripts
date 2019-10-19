@@ -67,7 +67,9 @@ echo "# Source from: platforms/init.sh" >> $INSTALL_FILE
 cat platforms/init.sh >> $INSTALL_FILE
 
 which -a hostname
-if [[ $? == 0 && `hostname` == "STEVEN.local" ]] ; then
+if [[ $? == 0 && `hostname` == "steven.lan" ]] ; then
+  echo "-- Copying tmux.conf file"
+  cp ~/.tmux.conf ./tools/tmux.conf
   echo "-- Copying vimrc file"
   cp ~/.vimrc ./tools/vimrc
 fi
