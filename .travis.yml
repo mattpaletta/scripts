@@ -11,9 +11,11 @@ addons:
 install: true
 
 before_install:
+  - md5sum < install.sh | cut -d\  -f1 > md5sum.txt
   - bash build.sh
 
 script:
+  - if [[ ! cmp "md5sum.txt" "install.sh" ]]; then exit 1 fi
   - bash install.sh -a
 
 notifications:
